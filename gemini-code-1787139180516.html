@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ms Lê Hằng English - IELTS Reading & Grammar Mock Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-pink: #ff80ab;
+      --primary-purple: #8854c0;
+      --accent-teal: #00C9A7;
+      --accent-yellow: #FDCB6E;
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --correct-color: #00D26A;
+      --wrong-color: #FF4757;
+      --highlight-bg: #d1c4e9;
+      --highlight-color: #ffffff;
+      --text-dark: #2d3436;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden; /* Khóa cuộn trang chính để tạo 2 cột cuộn độc lập */
+    }
+
+    /* NỀN GRADIENT CHUYỂN MÀU LIÊN TỤC CỰC KỲ MƯỢT MÀ */
+    body {
+      background: linear-gradient(-45deg, #ff80ab, #8854c0, #00C9A7, #FDCB6E, #ff9a9e, #fecfef, #a1c4fd);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* LỚP HỌA TIẾT CUTE LƠ LỬNG TRÊN NỀN */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140"><text x="15" y="30" font-size="24">🐱</text><text x="80" y="35" font-size="22">🍓</text><text x="20" y="95" font-size="22">⭐</text><text x="85" y="105" font-size="24">🌸</text><text x="50" y="65" font-size="20">🍉</text></svg>');
+      opacity: 0.28;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatingPattern 20s linear infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes floatingPattern {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 3px solid #f8bbd0;
+      padding: 8px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    .brand-title h1 {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--primary-purple);
+      line-height: 1.2;
+    }
+
+    .brand-title h2 {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #e91e63;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .timer-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      padding: 4px 14px;
+      border-radius: 25px;
+      box-shadow: 0 3px 0 #e0e0e0;
+      border: 2px solid #f0f0f0;
+    }
+
+    .timer-display {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: #d81b60;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .btn-timer {
+      background: var(--primary-pink);
+      color: white;
+      border: none;
+      padding: 5px 14px;
+      border-radius: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #d81b60;
+      transition: all 0.2s ease;
+      font-size: 0.8rem;
+    }
+
+    .btn-timer:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 0 #d81b60;
+    }
+
+    .progress-bar-wrapper {
+      width: 100%;
+      background: #e0e0e0;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-yellow), var(--correct-color));
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+
+    .tab-bar {
+      display: flex;
+      background: rgba(255,255,255,0.75);
+      padding: 6px 20px 0;
+      gap: 8px;
+      z-index: 9;
+      flex-shrink: 0;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      padding: 8px 18px;
+      background: #fff;
+      border: 2px solid #f8bbd0;
+      border-bottom: none;
+      border-radius: 12px 12px 0 0;
+      font-weight: 800;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      background: var(--primary-purple);
+      color: white;
+      border-color: var(--primary-purple);
+      transform: translateY(-2px);
+    }
+
+    /* BỐ CỤC CHÍNH HAI CỘT CUỘN ĐỘC LẬP */
+    .main-container {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      gap: 15px;
+      padding: 10px 15px 15px;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .split-pane {
+      flex: 1;
+      height: 100%;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      border: 3px solid #fff;
+      overflow-y: scroll; /* THANH TRƯỢT DỌC ĐỘC LẬP TỪNG PHẦN */
+      padding: 20px;
+      scroll-behavior: smooth;
+    }
+
+    .split-pane::-webkit-scrollbar {
+      width: 10px;
+    }
+    .split-pane::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.05);
+      border-radius: 10px;
+    }
+    .split-pane::-webkit-scrollbar-thumb {
+      background: var(--primary-pink);
+      border-radius: 10px;
+      border: 2px solid #fff;
+    }
+    .split-pane::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-purple);
+    }
+
+    .passage-title {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--primary-purple);
+      margin-bottom: 12px;
+      text-align: center;
+      border-bottom: 2px dashed #f8bbd0;
+      padding-bottom: 8px;
+    }
+
+    .paragraph-block {
+      margin-bottom: 16px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 15px;
+      border: 2px solid #f3e5f5;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.02);
+      line-height: 1.75;
+      font-size: 0.98rem;
+    }
+
+    .trans-toggle-btn {
+      margin-top: 8px;
+      background: #f3e5f5;
+      color: #6a1b9a;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+
+    .trans-toggle-btn:hover {
+      background: #e1bee7;
+    }
+
+    .translation-text {
+      display: none;
+      margin-top: 8px;
+      padding: 12px;
+      background: #fce4ec;
+      border-left: 4px solid var(--primary-pink);
+      border-radius: 8px;
+      font-size: 0.92rem;
+      color: #4a148c;
+      line-height: 1.65;
+    }
+
+    .sentence-target {
+      background-color: #fff59d !important;
+      border-radius: 4px;
+      padding: 2px 4px;
+      box-shadow: 0 0 10px #fbc02d;
+      animation: pulseHighlight 2s infinite;
+    }
+
+    @keyframes pulseHighlight {
+      0% { background-color: #fff59d; }
+      50% { background-color: #ffe082; }
+      100% { background-color: #fff59d; }
+    }
+
+    ::selection {
+      background-color: #d1c4e9;
+      color: #ffffff;
+    }
+
+    .custom-highlight {
+      background-color: #d1c4e9 !important;
+      color: #ffffff !important;
+      font-weight: bold;
+      border-radius: 4px;
+      padding: 1px 3px;
+    }
+
+    /* CSS Visual Signs Drawing */
+    .sign-card-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border-radius: 15px;
+      padding: 15px;
+      margin: 15px 0;
+      border: 2px dashed #ce93d8;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+
+    .sign-fire-lift {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      border: 3px solid #2d3436;
+      border-radius: 12px;
+      padding: 12px 20px;
+      background: #fff;
+      box-shadow: 0 4px 0 #2d3436;
+    }
+
+    .lift-box {
+      border: 3px solid #000;
+      width: 60px;
+      height: 70px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .lift-box::before {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 6px;
+      background: #d63031;
+      transform: rotate(-45deg);
+    }
+
+    .lift-box::after {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 6px;
+      background: #d63031;
+      transform: rotate(45deg);
+    }
+
+    .sign-construction {
+      background: #f1c40f;
+      border: 4px solid #000;
+      border-radius: 8px;
+      padding: 10px 20px;
+      text-align: center;
+      max-width: 300px;
+      width: 100%;
+      box-shadow: 0 4px 0 #000;
+    }
+
+    .caution-header {
+      background: #000;
+      color: #f1c40f;
+      font-size: 1.2rem;
+      font-weight: 900;
+      padding: 4px;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    .construction-text {
+      font-weight: 900;
+      color: #000;
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+
+    .sign-no-drink-drive {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 3px solid #2d3436;
+      border-radius: 12px;
+      padding: 10px 16px;
+      background: #fff;
+      max-width: 320px;
+      width: 100%;
+      box-shadow: 0 4px 0 #2d3436;
+    }
+
+    .sign-circle-red {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 7px solid #d63031;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: #fff;
+      flex-shrink: 0;
+    }
+
+    .sign-circle-red::before {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 6px;
+      background: #d63031;
+      transform: rotate(-45deg);
+    }
+
+    .sign-grass-notice {
+      border: 3px solid #0984e3;
+      border-radius: 12px;
+      padding: 14px 20px;
+      background: #f0f8ff;
+      text-align: center;
+      max-width: 300px;
+      width: 100%;
+      box-shadow: 0 4px 0 #0984e3;
+      color: #0984e3;
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+
+    .glossary-section {
+      margin-top: 25px;
+      background: #fff;
+      border-radius: 15px;
+      padding: 15px;
+      border: 2px solid #e1bee7;
+    }
+
+    .glossary-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary-purple);
+      margin-bottom: 12px;
+    }
+
+    .glossary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .glossary-table th, .glossary-table td {
+      border: 1px solid #f8bbd0;
+      padding: 6px 8px;
+      text-align: left;
+    }
+
+    .glossary-table th {
+      background: #f8bbd0;
+      color: #8854c0;
+      font-weight: 800;
+    }
+
+    .glossary-table tr:nth-child(even) {
+      background: #fcf4f8;
+    }
+
+    .question-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 20px;
+      border: 3px solid #f0f0f0;
+      box-shadow: 0 5px 0 #e0e0e0;
+      transition: transform 0.2s;
+    }
+
+    .question-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .question-number {
+      font-weight: 900;
+      color: var(--primary-purple);
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .question-text {
+      font-size: 0.98rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .mcq-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mcq-btn {
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      border-radius: 14px;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #dee2e6;
+      transition: all 0.15s ease;
+      color: #495057;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mcq-btn:hover {
+      background: #fce4ec;
+      border-color: var(--primary-pink);
+      transform: scale(1.01);
+    }
+
+    .mcq-btn.correct {
+      background: var(--correct-color) !important;
+      color: white !important;
+      border-color: #00b853 !important;
+      box-shadow: 0 4px 0 #009624 !important;
+    }
+
+    .mcq-btn.wrong {
+      background: var(--wrong-color) !important;
+      color: white !important;
+      border-color: #d63031 !important;
+      box-shadow: 0 4px 0 #c0392b !important;
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    .explanation-box {
+      display: none;
+      margin-top: 15px;
+      background: #f3e5f5;
+      border-radius: 14px;
+      padding: 15px;
+      border-left: 5px solid var(--primary-purple);
+      font-size: 0.92rem;
+      animation: fadeIn 0.3s ease;
+      line-height: 1.65;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .exp-step-title {
+      font-weight: 800;
+      color: var(--primary-purple);
+      margin-top: 8px;
+      margin-bottom: 4px;
+    }
+
+    .btn-locate {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #fff;
+      color: #6a1b9a;
+      border: 2px solid #ab47bc;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: 0 2px 0 #ab47bc;
+      transition: all 0.2s;
+    }
+
+    .btn-locate:hover {
+      background: #ab47bc;
+      color: white;
+    }
+
+    .action-bar {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .btn-submit-test {
+      background: linear-gradient(45deg, #FF4081, #7C4DFF);
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 900;
+      padding: 12px 35px;
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0 5px 0 #c2185b;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-submit-test:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 7px 0 #c2185b;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(5px);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-card {
+      background: #fff;
+      border-radius: 25px;
+      padding: 30px;
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border: 4px solid var(--primary-pink);
+      animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popUp {
+      from { transform: scale(0.6); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-score {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--primary-purple);
+      margin: 12px 0;
+    }
+
+    .modal-badge {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #e91e63;
+      margin-bottom: 15px;
+    }
+
+    #confetti-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 99;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="confetti-canvas"></canvas>
+
+  <header>
+    <div class="brand-title">
+      <h1>Ms Lê Hằng English</h1>
+      <h2>IELTS READING & GRAMMAR PRACTICE TEST</h2>
+    </div>
+
+    <div class="timer-container">
+      <span style="font-size: 1.1rem;">⏱️</span>
+      <div id="timerDisplay" class="timer-display">20:00</div>
+      <button id="btnTimerControl" class="btn-timer" onclick="toggleTimer()">BẮT ĐẦU TÍNH GIỜ LÀM BÀI</button>
+    </div>
+  </header>
+
+  <div style="padding: 0 20px; background: rgba(255,255,255,0.85);">
+    <div class="progress-bar-wrapper">
+      <div id="progressBarFill" class="progress-bar-fill"></div>
+    </div>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab(1)">Bài 1: Signs & Notices (Section XI)</button>
+    <button class="tab-btn" onclick="switchTab(2)">Bài 2: Teenagers and Stress (Section VI)</button>
+    <button class="tab-btn" onclick="switchTab(3)">Bài 3: Living in the Country (Section VII)</button>
+  </div>
+
+  <div class="main-container">
+
+    <!-- LEFT PANE: READING PASSAGES & VISUAL NOTICES -->
+    <div class="split-pane" id="passagePane">
+      
+      <!-- TAB 1 CONTENT: SIGNS & NOTICES -->
+      <div id="passage1" class="passage-content">
+        <h2 class="passage-title">SECTION XI: SIGNS AND NOTICES</h2>
+        
+        <!-- Sign 1: No lift in fire -->
+        <div class="sign-card-wrapper">
+          <div class="sign-fire-lift">
+            <div class="lift-box">👥</div>
+            <div style="font-size:2.4rem;">🔥</div>
+          </div>
+          <p style="margin-top:8px; font-weight:800; color:#555;">Sign 1: Fire Elevator Safety Sign</p>
+        </div>
+
+        <!-- Sign 2: Caution Construction -->
+        <div class="sign-card-wrapper">
+          <div class="sign-construction">
+            <div class="caution-header">CAUTION</div>
+            <div class="construction-text">CONSTRUCTION<br>IN PROGRESS 🚧</div>
+          </div>
+          <p style="margin-top:8px; font-weight:800; color:#555;">Sign 2: Construction Caution Sign</p>
+        </div>
+
+        <!-- Sign 3: Don't Drink and Drive -->
+        <div class="sign-card-wrapper">
+          <div class="sign-no-drink-drive">
+            <div class="sign-circle-red"><span style="font-size:1.6rem;">🚗🍾</span></div>
+            <div style="font-weight:900; font-size:1.05rem; color:#d63031;">DON'T<br>DRINK<br>AND DRIVE</div>
+          </div>
+          <p style="margin-top:8px; font-weight:800; color:#555;">Sign 3: Anti Drink-Driving Sign</p>
+        </div>
+
+        <!-- Sign 6: Please keep off the grass -->
+        <div class="sign-card-wrapper">
+          <div class="sign-grass-notice">
+            🌱 Please keep<br>off the grass 🌱
+          </div>
+          <p style="margin-top:8px; font-weight:800; color:#555;">Sign 6: Park Lawn Protection Notice</p>
+        </div>
+
+        <div class="glossary-section">
+          <div class="glossary-title">📖 Vocabulary Bank - Bài 1 (Signs & Notices)</div>
+          <table class="glossary-table">
+            <thead>
+              <tr><th>Word / Phrase</th><th>POS</th><th>Vietnamese Meaning</th><th>Synonym / Context</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Lift</td><td>(n)</td><td>Thang máy</td><td>Elevator</td></tr>
+              <tr><td>Caution</td><td>(n)</td><td>Sự cẩn trọng, cảnh báo nguy hiểm</td><td>Warning, alert</td></tr>
+              <tr><td>Construction in progress</td><td>(n phr)</td><td>Công trình đang thi công</td><td>Building work happening</td></tr>
+              <tr><td>Drink and drive</td><td>(v phr)</td><td>Lái xe sau khi uống rượu bia</td><td>Drunk driving</td></tr>
+              <tr><td>Keep off</td><td>(phr v)</td><td>Tránh xa, không giẫm lên</td><td>Stay off, do not walk on</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 2 CONTENT: TEENAGERS AND STRESS -->
+      <div id="passage2" class="passage-content" style="display:none;">
+        <h2 class="passage-title">SECTION VI: TEENAGERS AND STRESS</h2>
+        
+        <div class="paragraph-block">
+          <p>
+            <span id="p2-s1" class="sentence">Nowadays, teenagers (1) ______ a lot of stress and pressure from different aspects of life.</span> 
+            <span id="p2-s2" class="sentence">Those can come from school, family, or social relationships, which can make them feel stressful.</span> 
+            <span id="p2-s3" class="sentence">For example, they may be stressed about exams or trying to (2) ______ expectations from their parents.</span>
+          </p>
+          <p style="margin-top:10px;">
+            <span id="p2-s4" class="sentence">On the one hand, a small amount of stress can be helpful because it can push teens to study harder and do their best; (3) ______, too much stress can lead to serious problems like depression.</span> 
+            <span id="p2-s5" class="sentence">Some teens may even feel like they cannot solve everything, leading to anxiety or health problems.</span>
+          </p>
+          <p style="margin-top:10px;">
+            <span id="p2-s6" class="sentence">In order to (4) ______ with stress, it is important to find healthy ways to relax and rest.</span> 
+            <span id="p2-s7" class="sentence">Teens can talk to someone they trust, exercise, or do activities they enjoy to manage their stress.</span>
+          </p>
+          <p style="margin-top:10px;">
+            <span id="p2-s8" class="sentence">In conclusion, teen stress is common but can be managed if teens learn how to solve it properly.</span>
+          </p>
+          <button class="trans-toggle-btn" onclick="toggleTranslation('trans2')">🌟 Mở dịch đoạn này</button>
+          <div id="trans2" class="translation-text">
+            Ngày nay, thanh thiếu niên đang phải đối mặt với rất nhiều căng thẳng và áp lực từ các khía cạnh khác nhau của cuộc sống. Những áp lực đó có thể đến từ trường học, gia đình hoặc các mối quan hệ xã hội, điều có thể khiến các em cảm thấy căng thẳng. Ví dụ, các em có thể bị căng thẳng về các kỳ thi hoặc việc cố gắng đáp ứng kỳ vọng từ cha mẹ.
+            Một mặt, một lượng nhỏ căng thẳng có thể hữu ích vì nó thúc đẩy thanh thiếu niên học tập chăm chỉ hơn và nỗ lực hết mình; tuy nhiên, quá nhiều căng thẳng có thể dẫn đến các vấn đề nghiêm trọng như trầm cảm. Một số thanh thiếu niên thậm chí có thể cảm thấy như mình không thể giải quyết được mọi việc, dẫn đến lo âu hoặc các vấn đề về sức khỏe.
+            Để đối phó với căng thẳng, điều quan trọng là phải tìm ra những cách lành mạnh để thư giãn và nghỉ ngơi. Thanh thiếu niên có thể trò chuyện với người mà các em tin tưởng, tập thể dục hoặc thực hiện các hoạt động mà các em yêu thích để kiểm soát sự căng thẳng của mình.
+            Tóm lại, căng thẳng ở tuổi thanh thiếu niên là điều phổ biến nhưng có thể kiểm soát được nếu các em học được cách xử lý đúng đắn.
+          </div>
+        </div>
+
+        <div class="glossary-section">
+          <div class="glossary-title">📖 Vocabulary Bank - Bài 2 (Teenagers and Stress)</div>
+          <table class="glossary-table">
+            <thead>
+              <tr><th>Word / Phrase</th><th>POS</th><th>Vietnamese Meaning</th><th>Synonym / Context</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Face pressure</td><td>(v phr)</td><td>Đối mặt với áp lực</td><td>Confront stress</td></tr>
+              <tr><td>Meet expectations</td><td>(v phr)</td><td>Đáp ứng kỳ vọng</td><td>Fulfill expectations</td></tr>
+              <tr><td>On the one hand</td><td>(idiom)</td><td>Một mặt</td><td>From one perspective</td></tr>
+              <tr><td>Depression</td><td>(n)</td><td>Bệnh trầm cảm</td><td>Severe despondency</td></tr>
+              <tr><td>Cope with</td><td>(phr v)</td><td>Đương đầu, đối phó với</td><td>Deal with, manage</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 3 CONTENT: LIVING IN THE COUNTRY -->
+      <div id="passage3" class="passage-content" style="display:none;">
+        <h2 class="passage-title">SECTION VII: LIVING IN THE COUNTRY</h2>
+        
+        <div class="paragraph-block">
+          <p>
+            <span id="p3-s1" class="sentence">Living in the country is something that people from the city often dream about.</span> 
+            <span id="p3-s2" class="sentence">However, it has both advantages and disadvantages.</span>
+          </p>
+          <p style="margin-top:10px;">
+            <span id="p3-s3" class="sentence">There are certainly many advantages of living in the country.</span> 
+            <span id="p3-s4" class="sentence">First, you can enjoy peace and quietness.</span> 
+            <span id="p3-s5" class="sentence">Moreover, people tend to be friendlier.</span> 
+            <span id="p3-s6" class="sentence">A further advantage is that there is less traffic, so it is safer for young children.</span>
+          </p>
+          <p style="margin-top:10px;">
+            <span id="p3-s7" class="sentence">However, there are certain drawbacks to life outside the city.</span> 
+            <span id="p3-s8" class="sentence">First, because there are fewer people, you are likely to have few friends.</span> 
+            <span id="p3-s9" class="sentence">In addition, entertainment is difficult to find, particularly in the evening.</span> 
+            <span id="p3-s10" class="sentence">Furthermore, there are fewer shops and services so it is quite hard to find jobs.</span> 
+            <span id="p3-s11" class="sentence">As a result, you may have to travel a long way to work, which can be extremely expensive.</span>
+          </p>
+          <p style="margin-top:10px;">
+            <span id="p3-s12" class="sentence">In conclusion, it can be seen that the country is often the best place for those who are retired or who have young children.</span> 
+            <span id="p3-s13" class="sentence">In contrast, young or single people who have a career are better provided for in the city.</span>
+          </p>
+          <button class="trans-toggle-btn" onclick="toggleTranslation('trans3')">🌟 Mở dịch đoạn này</button>
+          <div id="trans3" class="translation-text">
+            Sống ở nông thôn là điều mà người dân thành phố thường mơ ước. Tuy nhiên, nó có cả những ưu điểm và nhược điểm.
+            Chắc chắn có nhiều ưu điểm khi sống ở vùng nông thôn. Thứ nhất, bạn có thể tận hưởng sự yên bình và thanh tĩnh. Hơn nữa, mọi người thường có xu hướng thân thiện hơn. Một ưu điểm nữa là có ít phương tiện giao thông hơn, do đó an toàn hơn cho trẻ nhỏ.
+            Tuy nhiên, có những hạn chế nhất định đối với cuộc sống bên ngoài thành phố. Thứ nhất, vì có ít người hơn nên bạn có thể sẽ có ít bạn bè. Ngoài ra, các hoạt động giải trí rất khó tìm, đặc biệt là vào buổi tối. Hơn nữa, có ít cửa hàng và dịch vụ hơn nên khá khó tìm việc làm. Kết quả là bạn có thể phải di chuyển một quãng đường dài để đi làm, điều này có thể vô cùng tốn kém.
+            Tóm lại, có thể thấy rằng vùng nông thôn thường là nơi tốt nhất cho những người đã nghỉ hưu hoặc những người có con nhỏ. Ngược lại, những người trẻ tuổi hoặc độc thân đang theo đuổi sự nghiệp sẽ được đáp ứng tốt hơn ở thành phố.
+          </div>
+        </div>
+
+        <div class="glossary-section">
+          <div class="glossary-title">📖 Vocabulary Bank - Bài 3 (Living in the Country)</div>
+          <table class="glossary-table">
+            <thead>
+              <tr><th>Word / Phrase</th><th>POS</th><th>Vietnamese Meaning</th><th>Synonym / Context</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Quietness</td><td>(n)</td><td>Sự yên ắng, thanh tĩnh</td><td>Peacefulness, calm</td></tr>
+              <tr><td>Drawbacks</td><td>(n)</td><td>Những hạn chế, nhược điểm</td><td>Disadvantages, downsides</td></tr>
+              <tr><td>Extremely expensive</td><td>(adj phr)</td><td>Cực kỳ tốn kém, đắt đỏ</td><td>Highly costly</td></tr>
+              <tr><td>Retired</td><td>(adj)</td><td>Đã nghỉ hưu</td><td>Pensioned off</td></tr>
+              <tr><td>Better provided for</td><td>(v phr)</td><td>Được đáp ứng, phục vụ tốt hơn</td><td>Better catered for</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT PANE: INTERACTIVE EXERCISES -->
+    <div class="split-pane" id="exercisePane">
+      
+      <!-- CÂU HỎI BÀI 1 (TAB 1) -->
+      <div id="exerciseTab1" class="exercise-tab-content">
+        <h3 style="color:var(--primary-purple); margin-bottom:15px;">SECTION XI: SIGNS AND NOTICES (QUESTIONS 1, 2, 3, 6)</h3>
+
+        <!-- Sign Q1 -->
+        <div class="question-card" id="qcard-s-1">
+          <div class="question-number">Question 1 (Sign 1)</div>
+          <div class="question-text">What does the sign say? (Elevator with red X next to fire flames)</div>
+          <div class="mcq-options" id="opts-s-1" data-correct="B">
+            <button class="mcq-btn" onclick="checkMCQ('s-1', 'A', 'B')">A. Use the lift when there is fire</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-1', 'B', 'B')">B. Don’t use the lift when there is fire</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-1', 'C', 'B')">C. You can use the lift when there is fire</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-1', 'D', 'B')">D. You must use the lift when there is fire</button>
+          </div>
+          <div class="explanation-box" id="exp-s-1">
+            <div class="exp-step-title">1. Dịch câu hỏi sang tiếng Việt:</div>
+            <p>Biển báo này thông báo điều gì?</p>
+            <div class="exp-step-title">2. Liệt kê và dịch nghĩa cả 4 đáp án:</div>
+            <p>A. Use the lift when there is fire (v phr - cụm động từ): Sử dụng thang máy khi có hỏa hoạn xảy ra.</p>
+            <p>B. Don’t use the lift when there is fire (v phr - cụm động từ): Không sử dụng thang máy khi có hỏa hoạn xảy ra.</p>
+            <p>C. You can use the lift when there is fire (v phr - cụm động từ): Bạn có thể sử dụng thang máy khi có hỏa hoạn xảy ra.</p>
+            <p>D. You must use the lift when there is fire (v phr - cụm động từ): Bạn bắt buộc phải sử dụng thang máy khi có hỏa hoạn xảy ra.</p>
+            <div class="exp-step-title">3. Tại sao đáp án đúng là đúng?</div>
+            <p>Biển báo vẽ hình ngọn lửa bốc cháy bên cạnh thang máy có dấu gạch chéo màu đỏ cấm người vào bên trong, biểu thị quy tắc an toàn phòng cháy chữa cháy là tuyệt đối không dùng thang máy khi có cháy xảy ra -> Chọn B.</p>
+            <div class="exp-step-title">4. Tại sao 3 đáp án còn lại SAI?</div>
+            <p>Đáp án A, C, D đều mang nghĩa cho phép hoặc bắt buộc sử dụng thang máy khi hỏa hoạn, điều này hoàn toàn trái ngược với biển báo cấm và cực kỳ nguy hiểm.</p>
+          </div>
+        </div>
+
+        <!-- Sign Q2 -->
+        <div class="question-card" id="qcard-s-2">
+          <div class="question-number">Question 2 (Sign 2)</div>
+          <div class="question-text">What does the sign say? ("CAUTION: CONSTRUCTION IN PROGRESS")</div>
+          <div class="mcq-options" id="opts-s-2" data-correct="D">
+            <button class="mcq-btn" onclick="checkMCQ('s-2', 'A', 'D')">A. There is careful construction.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-2', 'B', 'D')">B. Construction must be carefully done in progress.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-2', 'C', 'D')">C. You have to construct buildings with caution.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-2', 'D', 'D')">D. Be careful because building work is happening.</button>
+          </div>
+          <div class="explanation-box" id="exp-s-2">
+            <div class="exp-step-title">1. Dịch câu hỏi sang tiếng Việt:</div>
+            <p>Biển báo này thông báo điều gì?</p>
+            <div class="exp-step-title">2. Liệt kê và dịch nghĩa cả 4 đáp án:</div>
+            <p>A. There is careful construction (n phr - cụm danh từ): Có công trình xây dựng cẩn thận.</p>
+            <p>B. Construction must be carefully done in progress (v phr - cụm động từ): Việc thi công phải được tiến hành một cách cẩn thận.</p>
+            <p>C. You have to construct buildings with caution (v phr - cụm động từ): Bạn phải xây dựng các tòa nhà một cách cẩn trọng.</p>
+            <p>D. Be careful because building work is happening (v phr - cụm động từ): Hãy cẩn thận vì hoạt động xây dựng đang diễn ra.</p>
+            <div class="exp-step-title">3. Tại sao đáp án đúng là đúng?</div>
+            <p>"CAUTION" có nghĩa là cảnh báo hãy cẩn thận ("Be careful"), và "CONSTRUCTION IN PROGRESS" có nghĩa là công trình xây dựng đang được thi công ("building work is happening"). Câu D diễn đạt chính xác thông điệp cảnh báo người đi đường cần cẩn thận vì có công trình đang thi công -> Chọn D.</p>
+            <div class="exp-step-title">4. Tại sao 3 đáp án còn lại SAI?</div>
+            <p>Đáp án A sai cấu trúc nghĩa. Đáp án B và C đều hiểu sai đối tượng được cảnh báo là công nhân xây dựng, trong khi biển báo này hướng tới người đi lại xung quanh khu vực công trường.</p>
+          </div>
+        </div>
+
+        <!-- Sign Q3 -->
+        <div class="question-card" id="qcard-s-3">
+          <div class="question-number">Question 3 (Sign 3)</div>
+          <div class="question-text">What does the sign suggest? ("DON'T DRINK AND DRIVE")</div>
+          <div class="mcq-options" id="opts-s-3" data-correct="A">
+            <button class="mcq-btn" onclick="checkMCQ('s-3', 'A', 'A')">A. Drinking alcohol is not safe when you are driving a car or other vehicles.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-3', 'B', 'A')">B. You can drive a car if you drink only a little alcohol and feel okay.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-3', 'C', 'A')">C. It is good to drink water while driving so you stay awake and safe.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-3', 'D', 'A')">D. You should only drive if you have not had any alcohol to drink.</button>
+          </div>
+          <div class="explanation-box" id="exp-s-3">
+            <div class="exp-step-title">1. Dịch câu hỏi sang tiếng Việt:</div>
+            <p>Biển báo này đưa ra lời khuyên gì?</p>
+            <div class="exp-step-title">2. Liệt kê và dịch nghĩa cả 4 đáp án:</div>
+            <p>A. Drinking alcohol is not safe when you are driving a car or other vehicles (clause - mệnh đề): Việc uống rượu bia là không an toàn khi bạn đang điều khiển xe ô tô hoặc các phương tiện giao thông khác.</p>
+            <p>B. You can drive a car if you drink only a little alcohol and feel okay (clause - mệnh đề): Bạn có thể lái xe ô tô nếu bạn chỉ uống một chút rượu bia và cảm thấy ổn.</p>
+            <p>C. It is good to drink water while driving so you stay awake and safe (clause - mệnh đề): Uống nước lọc khi lái xe là tốt để bạn luôn tỉnh táo và an toàn.</p>
+            <p>D. You should only drive if you have not had any alcohol to drink (clause - mệnh đề): Bạn chỉ nên lái xe nếu bạn không uống bất kỳ loại rượu bia nào.</p>
+            <div class="exp-step-title">3. Tại sao đáp án đúng là đúng?</div>
+            <p>Biển báo ghi rõ thông điệp "DON'T DRINK AND DRIVE" kèm theo biểu tượng chai rượu và xe ô tô bị gạch chéo đỏ, khẳng định việc sử dụng rượu bia khi tham gia giao thông là hành vi nguy hiểm và không an toàn -> Chọn A.</p>
+            <div class="exp-step-title">4. Tại sao 3 đáp án còn lại SAI?</div>
+            <p>Đáp án B cổ xúy hành vi lái xe sau khi uống rượu là sai luật giao thông. Đáp án C nói về việc uống nước lọc không liên quan đến biển báo cấm rượu bia. Đáp án D dùng từ "should" chưa thể hiện trọn vẹn bản chất cảnh báo nguy hiểm của biển cấm.</p>
+          </div>
+        </div>
+
+        <!-- Sign Q6 -->
+        <div class="question-card" id="qcard-s-6">
+          <div class="question-number">Question 6 (Sign 6)</div>
+          <div class="question-text">Which sentence is true? ("Please keep off the grass")</div>
+          <div class="mcq-options" id="opts-s-6" data-correct="C">
+            <button class="mcq-btn" onclick="checkMCQ('s-6', 'A', 'C')">A. You must keep walking on the grass.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-6', 'B', 'C')">B. You must walk on the grass.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-6', 'C', 'C')">C. You can’t walk on the grass.</button>
+            <button class="mcq-btn" onclick="checkMCQ('s-6', 'D', 'C')">D. You shouldn’t walk on the grass.</button>
+          </div>
+          <div class="explanation-box" id="exp-s-6">
+            <div class="exp-step-title">1. Dịch câu hỏi sang tiếng Việt:</div>
+            <p>Câu nào sau đây là đúng với nội dung biển báo?</p>
+            <div class="exp-step-title">2. Liệt kê và dịch nghĩa cả 4 đáp án:</div>
+            <p>A. You must keep walking on the grass (v phr - cụm động từ): Bạn phải tiếp tục đi bộ trên bãi cỏ.</p>
+            <p>B. You must walk on the grass (v phr - cụm động từ): Bạn bắt buộc phải đi bộ trên bãi cỏ.</p>
+            <p>C. You can’t walk on the grass (v phr - cụm động từ): Bạn không được phép đi bộ trên bãi cỏ.</p>
+            <p>D. You shouldn’t walk on the grass (v phr - cụm động từ): Bạn không nên đi bộ trên bãi cỏ.</p>
+            <div class="exp-step-title">3. Tại sao đáp án đúng là đúng?</div>
+            <p>Cụm từ "keep off something" có nghĩa là tránh xa, không giẫm lên hoặc không bước vào nơi nào đó. Biển báo "Please keep off the grass" là biển quy định công cộng yêu cầu mọi người không được đi lên cỏ, tương đương với "You can't walk on the grass" (Không được phép đi lên bãi cỏ) -> Chọn C.</p>
+            <div class="exp-step-title">4. Tại sao 3 đáp án còn lại SAI?</div>
+            <p>Đáp án A và B sai nghĩa hoàn toàn vì yêu cầu đi lên cỏ. Đáp án D chỉ là lời khuyên nhẹ nhàng, trong khi biển báo công cộng thể hiện quy định cấm giẫm lên cỏ.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CÂU HỎI BÀI 2 (TAB 2) -->
+      <div id="exerciseTab2" class="exercise-tab-content" style="display:none;">
+        <h3 style="color:var(--primary-purple); margin-bottom:15px;">SECTION VI: CLOZE TEST - TEENAGERS AND STRESS (QUESTIONS 1 - 4)</h3>
+
+        <!-- Cloze Q1 -->
+        <div class="question-card" id="qcard-cl-1">
+          <div class="question-number">Question 1 (Blank 1)</div>
+          <div class="question-text">Nowadays, teenagers (1) ______ a lot of stress and pressure from different aspects of life.</div>
+          <div class="mcq-options" id="opts-cl-1" data-correct="D">
+            <button class="mcq-btn" onclick="checkMCQ('cl-1', 'A', 'D')">A. faces</button>
+            <button class="mcq-btn" onclick="checkMCQ('cl-1', 'B', 'D')">B. is facing</button>
+            <button class="mcq-btn" onclick="checkMCQ('cl-1', 'C', 'D')">C. faced</button>
+            <button class="mcq-btn" onclick="checkMCQ('cl-1', 'D', 'D')">D. are facing</button>
+          </div>
+          <div class="explanation-box" id="exp-cl-1">
+            <div class="exp-step-title">1. Dịch câu hỏi sang tiếng Việt:</div>
+            <p>Điền dạng đúng của động từ vào chỗ trống số 1 trong câu: "Ngày nay, thanh thiếu niên đang phải đối mặt với rất nhiều căng thẳng và áp lực từ các khía cạnh khác nhau của cuộc sống."</p>
+            <div class="exp-step-title">2. Liệt kê và dịch nghĩa cả 4 đáp án:</div>
+            <p>A. faces (v - động từ chia ngôi thứ ba số ít thì hiện tại đơn): đối mặt.</p>
+            <p>B. is facing (v - động từ thì hiện tại tiếp diễn số ít): đang đối mặt.</p>
+            <p>C. faced (v - động từ thì quá khứ đơn): đã đối mặt.</p>
+            <p>D. are facing (v - động từ thì hiện tại tiếp diễn số nhiều): đang đối mặt.</p>
+            <div class="exp-step-title">3. Tại sao đáp án đúng là đúng?</div>
+            <p>Chủ ngữ trong câu là danh từ số nhiều "teenagers" (các thanh thiếu niên) và có trạng từ chỉ thời gian "Nowadays" (ngày nay) chỉ một thực trạng đang diễn ra, do đó động từ phải chia ở thì hiện tại tiếp diễn số nhiều là "are facing" -> Chọn D.</p>
+            <div class="exp-step-title">4. Tại sao 3 đáp án còn lại SAI?</div>
+            <p>Đáp án A chia động từ số ít là sai hòa hợp chủ vị. Đáp án B dùng trợ động từ "is" cho chủ ngữ số ít là sai. Đáp án C chia thì quá khứ đơn là không phù hợp với trạng từ "Nowadays".</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s1')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- Cloze Q2 -->
+        <div class="question-card" id="qcard-cl-2">
+          <div class="question-number">Question 2 (Blank 2)</div>
+          <div class="question-text">For example, they may be stressed about exams or trying to (2) ______ expectations from their parents.</div>
+          <div class="mcq-options" id="opts-cl-2" data-correct="B">
+            <button class="mcq-btn" onclick="checkMCQ('cl-2', 'A', 'B')">A. take</button>
+            <button class="mcq-btn" onclick="checkMCQ('cl-2', 'B', 'B')">B. meet</button>
+            <button class="mcq-btn" onclick="checkMCQ('cl-2', 'C', 'B')">C. brownse</button>
+            <button class="mcq-btn" onclick="checkMCQ('cl-2', 'D', 'B')">D. check</button>
+          </div>
+          <div class="explanation-box" id="exp-cl-2">
+            <div class="exp-step-title">1. Dịch câu hỏi sang tiếng Việt:</div>
+            <p>Điền từ thích hợp vào chỗ trống số 2 trong câu: "Ví dụ, các em có thể bị căng thẳng về các kỳ thi hoặc việc cố gắng đáp ứng kỳ vọng từ cha mẹ."</p>
+            <div class="exp-step-title">2. Liệt kê và dịch nghĩa cả 4 đáp án:</div>
+            <p>A. take (v - động từ): cầm, nắm, lấy.</p>
+            <p>B. meet (v - động từ): đáp ứng, thỏa mãn, đạt được.</p>
+            <p>C. brownse (v - động từ viết sai chính tả của browse): xem lướt qua.</p>
+            <p>D. check (v - động từ): kiểm tra.</p>
+            <div class="exp-step-title">3. Tại sao đáp án đúng là đúng?</div>
+            <p>Trong tiếng Anh có cụm kết hợp từ cố định là "meet expectations" mang nghĩa là đáp ứng kỳ vọng hoặc làm thỏa mãn sự mong đợi của ai đó -> Chọn B.</p>
+            <div class="exp-step-title">4. Tại sao 3 đáp án còn lại SAI?</div>
+            <p>Các động từ take, browse, check không kết hợp với danh từ "expectations" để tạo thành cụm từ mang nghĩa đáp ứng kỳ vọng.</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s3')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- Cloze Q3 -->
+        <div class="question-card" id="qcard-cl-3">
+          <div class="question-number">Question 3 (Blank 3)</div>
+          <div class="question-text">...push teens to study harder and do their best; (3) ______, too much stress can lead to serious problems...</div>
+          <div class="mcq-options" id="opts-cl-3" data-correct="D">
+            <button class="mcq-btn" onclick="checkMCQ('cl-3', 'A', 'D')">A. Otherwise</button>
+            <button class="mcq-btn" onclick="checkMCQ('cl-3', 'B', 'D')">B. Therefore</button>
+            <button class="mcq-btn" onclick="checkMCQ('cl-3', 'C', 'D')">C. Because</button>
+            <button class="mcq-btn" onclick="checkMCQ('cl-3', 'D', 'D')">D. However</button>
+          </div>
+          <div class="explanation-box" id="exp-cl-3">
+            <div class="exp-step-title">1. Dịch câu hỏi sang tiếng Việt:</div>
+            <p>Điền liên từ thích hợp vào chỗ trống số 3 trong câu: "Một mặt, một lượng nhỏ căng thẳng có thể hữu ích...; tuy nhiên, quá nhiều căng thẳng có thể dẫn đến các vấn đề nghiêm trọng..."</p>
+            <div class="exp-step-title">2. Liệt kê và dịch nghĩa cả 4 đáp án:</div>
+            <p>A. Otherwise (adv - trạng từ liên kết): nếu không thì.</p>
+            <p>B. Therefore (adv - trạng từ liên kết): do đó, vì vậy.</p>
+            <p>C. Because (conj - liên từ chỉ nguyên nhân): bởi vì.</p>
+            <p>D. However (adv - trạng từ liên kết): tuy nhiên.</p>
+            <div class="exp-step-title">3. Tại sao đáp án đúng là đúng?</div>
+            <p>Vế trước mở đầu bằng "On the one hand" (một mặt) nói về mặt tích cực của căng thẳng nhẹ, vế sau đứng sau dấu chấm phẩy nêu lên mặt tiêu cực của căng thẳng quá mức, do đó cần trạng từ liên kết mang ý nghĩa tương phản đối lập là "However" (tuy nhiên) -> Chọn D.</p>
+            <div class="exp-step-title">4. Tại sao 3 đáp án còn lại SAI?</div>
+            <p>Đáp án A chỉ giả định phủ định. Đáp án B chỉ mối quan hệ nhân quả. Đáp án C chỉ nguyên nhân và không đứng độc lập sau dấu chấm phẩy và trước dấu phẩy như vậy.</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s4')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- Cloze Q4 -->
+        <div class="question-card" id="qcard-cl-4">
+          <div class="question-number">Question 4 (Blank 4)</div>
+          <div class="question-text">In order to (4) ______ with stress, it is important to find healthy ways to relax and rest.</div>
+          <div class="mcq-options" id="opts-cl-4" data-correct="C">
+            <button class="mcq-btn" onclick="checkMCQ('cl-4', 'A', 'C')">A. discuss</button>
+            <button class="mcq-btn" onclick="checkMCQ('cl-4', 'B', 'C')">B. solve</button>
+            <button class="mcq-btn" onclick="checkMCQ('cl-4', 'C', 'C')">C. cope</button>
+            <button class="mcq-btn" onclick="checkMCQ('cl-4', 'D', 'C')">D. turn</button>
+          </div>
+          <div class="explanation-box" id="exp-cl-4">
+            <div class="exp-step-title">1. Dịch câu hỏi sang tiếng Việt:</div>
+            <p>Điền động từ thích hợp vào chỗ trống số 4 trong câu: "Để đối phó với căng thẳng, điều quan trọng là phải tìm ra những cách lành mạnh để thư giãn và nghỉ ngơi."</p>
+            <div class="exp-step-title">2. Liệt kê và dịch nghĩa cả 4 đáp án:</div>
+            <p>A. discuss (v - động từ): thảo luận, bàn luận.</p>
+            <p>B. solve (v - động từ): giải quyết.</p>
+            <p>C. cope (v - động từ): đối phó, đương đầu, xử lý.</p>
+            <p>D. turn (v - động từ): xoay, quay.</p>
+            <div class="exp-step-title">3. Tại sao đáp án đúng là đúng?</div>
+            <p>Cấu trúc ngữ pháp cố định là "cope with something" mang nghĩa là đối phó hoặc đương đầu với khó khăn hay căng thẳng -> Chọn C.</p>
+            <div class="exp-step-title">4. Tại sao 3 đáp án còn lại SAI?</div>
+            <p>Động từ "discuss" và "solve" là ngoại động từ đi trực tiếp với tân ngữ không dùng giới từ "with". Động từ "turn" đi với "with" không mang nghĩa giải tỏa áp lực.</p>
+            <button class="btn-locate" onclick="locateEvidence('p2-s6')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CÂU HỎI BÀI 3 (TAB 3) -->
+      <div id="exerciseTab3" class="exercise-tab-content" style="display:none;">
+        <h3 style="color:var(--primary-purple); margin-bottom:15px;">SECTION VII: READING COMPREHENSION - LIVING IN THE COUNTRY (QUESTIONS 1 - 5)</h3>
+
+        <!-- Read Q1 -->
+        <div class="question-card" id="qcard-rd-1">
+          <div class="question-number">Question 1</div>
+          <div class="question-text">Which of the following statements is NOT true according to the passage?</div>
+          <div class="mcq-options" id="opts-rd-1" data-correct="D">
+            <button class="mcq-btn" onclick="checkMCQ('rd-1', 'A', 'D')">A. There are fewer shops and services in the country.</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-1', 'B', 'D')">B. It’s hard to find entertainment in the country.</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-1', 'C', 'D')">C. People in the country tend to be friendlier than people in the city.</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-1', 'D', 'D')">D. The country is only suitable for retired people.</button>
+          </div>
+          <div class="explanation-box" id="exp-rd-1">
+            <div class="exp-step-title">1. Dịch câu hỏi sang tiếng Việt:</div>
+            <p>Phát biểu nào sau đây KHÔNG ĐÚNG theo nội dung bài đọc?</p>
+            <div class="exp-step-title">2. Liệt kê và dịch nghĩa cả 4 đáp án:</div>
+            <p>A. There are fewer shops and services in the country (clause - mệnh đề): Có ít cửa hàng và dịch vụ hơn ở vùng nông thôn.</p>
+            <p>B. It’s hard to find entertainment in the country (clause - mệnh đề): Rất khó tìm kiếm các hoạt động giải trí ở nông thôn.</p>
+            <p>C. People in the country tend to be friendlier than people in the city (clause - mệnh đề): Người dân ở nông thôn có xu hướng thân thiện hơn người dân ở thành phố.</p>
+            <p>D. The country is only suitable for retired people (clause - mệnh đề): Nông thôn chỉ thích hợp cho những người đã nghỉ hưu.</p>
+            <div class="exp-step-title">3. Tại sao đáp án đúng là đúng?</div>
+            <p>Dẫn chứng câu đầu đoạn 4 khẳng định "the country is often the best place for those who are retired or who have young children" (nông thôn là nơi tuyệt vời cho người nghỉ hưu hoặc những gia đình có con nhỏ). Vì vậy phát biểu D sử dụng từ "only" (chỉ duy nhất) là sai lệch với thông tin bài đọc -> Chọn D.</p>
+            <div class="exp-step-title">4. Tại sao 3 đáp án còn lại SAI?</div>
+            <p>Đáp án A đúng theo câu "there are fewer shops and services". Đáp án B đúng theo câu "entertainment is difficult to find". Đáp án C đúng theo câu "people tend to be friendlier".</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s12')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- Read Q2 -->
+        <div class="question-card" id="qcard-rd-2">
+          <div class="question-number">Question 2</div>
+          <div class="question-text">How many advantages does living in the country have?</div>
+          <div class="mcq-options" id="opts-rd-2" data-correct="A">
+            <button class="mcq-btn" onclick="checkMCQ('rd-2', 'A', 'A')">A. Three</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-2', 'B', 'A')">B. Two</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-2', 'C', 'A')">C. Four</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-2', 'D', 'A')">D. No</button>
+          </div>
+          <div class="explanation-box" id="exp-rd-2">
+            <div class="exp-step-title">1. Dịch câu hỏi sang tiếng Việt:</div>
+            <p>Cuộc sống ở vùng nông thôn có bao nhiêu ưu điểm được liệt kê trong bài?</p>
+            <div class="exp-step-title">2. Liệt kê và dịch nghĩa cả 4 đáp án:</div>
+            <p>A. Three (num - số từ): Ba ưu điểm.</p>
+            <p>B. Two (num - số từ): Hai ưu điểm.</p>
+            <p>C. Four (num - số từ): Bốn ưu điểm.</p>
+            <p>D. No (det - từ hạn định): Không có ưu điểm nào.</p>
+            <div class="exp-step-title">3. Tại sao đáp án đúng là đúng?</div>
+            <p>Đoạn văn thứ hai liệt kê rõ ràng 3 ưu điểm bao gồm: ưu điểm thứ nhất là tận hưởng sự yên bình và thanh tĩnh ("enjoy peace and quietness"), ưu điểm thứ hai là mọi người thân thiện hơn ("people tend to be friendlier"), và ưu điểm thứ ba là ít xe cộ hơn nên an toàn cho trẻ nhỏ ("less traffic, so it is safer for young children") -> Tổng cộng có 3 ưu điểm -> Chọn A.</p>
+            <div class="exp-step-title">4. Tại sao 3 đáp án còn lại SAI?</div>
+            <p>Các con số Two, Four hoặc No đều không đúng với số lượng 3 ưu điểm được tác giả trình bày rành mạch trong đoạn 2.</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s3')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- Read Q3 -->
+        <div class="question-card" id="qcard-rd-3">
+          <div class="question-number">Question 3</div>
+          <div class="question-text">Having few friends is ______________.</div>
+          <div class="mcq-options" id="opts-rd-3" data-correct="B">
+            <button class="mcq-btn" onclick="checkMCQ('rd-3', 'A', 'B')">A. one of the drawbacks to life in the country</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-3', 'B', 'B')">B. one of the certain drawbacks to life outside the city</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-3', 'C', 'B')">C. the only disadvantage of living in the country</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-3', 'D', 'B')">D. one of the certain advantages to life outside the city</button>
+          </div>
+          <div class="explanation-box" id="exp-rd-3">
+            <div class="exp-step-title">1. Dịch câu hỏi sang tiếng Việt:</div>
+            <p>Việc có ít bạn bè là ______________.</p>
+            <div class="exp-step-title">2. Liệt kê và dịch nghĩa cả 4 đáp án:</div>
+            <p>A. one of the drawbacks to life in the country (n phr - cụm danh từ): một trong những hạn chế của cuộc sống ở nông thôn.</p>
+            <p>B. one of the certain drawbacks to life outside the city (n phr - cụm danh từ): một trong những hạn chế nhất định của cuộc sống bên ngoài thành phố.</p>
+            <p>C. the only disadvantage of living in the country (n phr - cụm danh từ): nhược điểm duy nhất của việc sống ở nông thôn.</p>
+            <p>D. one of the certain advantages to life outside the city (n phr - cụm danh từ): một trong những ưu điểm nhất định của cuộc sống bên ngoài thành phố.</p>
+            <div class="exp-step-title">3. Tại sao đáp án đúng là đúng?</div>
+            <p>Dẫn chứng ở đầu đoạn 3: "However, there are certain drawbacks to life outside the city. First, because there are fewer people, you are likely to have few friends" (Tuy nhiên, có những hạn chế nhất định đối với cuộc sống bên ngoài thành phố. Thứ nhất, bởi vì có ít người hơn nên bạn có thể sẽ có ít bạn bè) -> Khớp hoàn toàn với đáp án B -> Chọn B.</p>
+            <div class="exp-step-title">4. Tại sao 3 đáp án còn lại SAI?</div>
+            <p>Đáp án C sai từ "the only" (duy nhất) vì bài đọc còn nêu nhiều nhược điểm khác. Đáp án D sai vì đây là nhược điểm chứ không phải ưu điểm (advantages).</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s7')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- Read Q4 -->
+        <div class="question-card" id="qcard-rd-4">
+          <div class="question-number">Question 4</div>
+          <div class="question-text">Living in the country is safer for young children because ______________.</div>
+          <div class="mcq-options" id="opts-rd-4" data-correct="C">
+            <button class="mcq-btn" onclick="checkMCQ('rd-4', 'A', 'C')">A. there are few shops</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-4', 'B', 'C')">B. there are few services</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-4', 'C', 'C')">C. there is less traffic</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-4', 'D', 'C')">D. there are fewer people</button>
+          </div>
+          <div class="explanation-box" id="exp-rd-4">
+            <div class="exp-step-title">1. Dịch câu hỏi sang tiếng Việt:</div>
+            <p>Sống ở nông thôn an toàn hơn cho trẻ nhỏ là bởi vì ______________.</p>
+            <div class="exp-step-title">2. Liệt kê và dịch nghĩa cả 4 đáp án:</div>
+            <p>A. there are few shops (clause - mệnh đề): có ít cửa hàng.</p>
+            <p>B. there are few services (clause - mệnh đề): có ít dịch vụ.</p>
+            <p>C. there is less traffic (clause - mệnh đề): có ít phương tiện giao thông đi lại hơn.</p>
+            <p>D. there are fewer people (clause - mệnh đề): có ít người hơn.</p>
+            <div class="exp-step-title">3. Tại sao đáp án đúng là đúng?</div>
+            <p>Dẫn chứng câu cuối đoạn 2 nêu rõ: "A further advantage is that there is less traffic, so it is safer for young children" (Một ưu điểm nữa là có ít phương tiện giao thông hơn, do đó an toàn hơn cho trẻ nhỏ) -> Chọn C.</p>
+            <div class="exp-step-title">4. Tại sao 3 đáp án còn lại SAI?</div>
+            <p>Các chi tiết có ít cửa hàng, ít dịch vụ hay ít người là những đặc điểm dẫn đến hạn chế về giải trí và tìm kiếm việc làm, không phải lý do trực tiếp tạo nên sự an toàn cho trẻ nhỏ.</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s6')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+
+        <!-- Read Q5 -->
+        <div class="question-card" id="qcard-rd-5">
+          <div class="question-number">Question 5</div>
+          <div class="question-text">According to the passage, living in the country has ______________.</div>
+          <div class="mcq-options" id="opts-rd-5" data-correct="B">
+            <button class="mcq-btn" onclick="checkMCQ('rd-5', 'A', 'B')">A. only bad points</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-5', 'B', 'B')">B. both good and bad points</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-5', 'C', 'B')">C. only good points</button>
+            <button class="mcq-btn" onclick="checkMCQ('rd-5', 'D', 'B')">D. no disadvantages</button>
+          </div>
+          <div class="explanation-box" id="exp-rd-5">
+            <div class="exp-step-title">1. Dịch câu hỏi sang tiếng Việt:</div>
+            <p>Theo bài đọc, cuộc sống ở vùng nông thôn có ______________.</p>
+            <div class="exp-step-title">2. Liệt kê và dịch nghĩa cả 4 đáp án:</div>
+            <p>A. only bad points (n phr - cụm danh từ): chỉ toàn những điểm tiêu cực.</p>
+            <p>B. both good and bad points (n phr - cụm danh từ): cả những điểm tốt lẫn những điểm chưa tốt (cả ưu điểm và nhược điểm).</p>
+            <p>C. only good points (n phr - cụm danh từ): chỉ toàn những điểm tốt.</p>
+            <p>D. no disadvantages (n phr - cụm danh từ): không có bất kỳ nhược điểm nào.</p>
+            <div class="exp-step-title">3. Tại sao đáp án đúng là đúng?</div>
+            <p>Dẫn chứng ngay câu thứ hai của bài đọc khẳng định: "However, it has both advantages and disadvantages" (Tuy nhiên, nó có cả những ưu điểm và nhược điểm), tương đương với cụm từ "both good and bad points" -> Chọn B.</p>
+            <div class="exp-step-title">4. Tại sao 3 đáp án còn lại SAI?</div>
+            <p>Đáp án A, C, D đều mang tính tuyệt đối hóa phiến diện một chiều, đi ngược lại cấu trúc bài viết khi tác giả phân tích cả mặt lợi (advantages) lẫn mặt hại (drawbacks).</p>
+            <button class="btn-locate" onclick="locateEvidence('p3-s2')">🖱️ Vị trí dẫn chứng</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-bar">
+        <button class="btn-submit-test" onclick="submitTest()">🏆 NỘP BÀI THI</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="modal-overlay" id="scoreModal">
+    <div class="modal-card">
+      <h2 style="color: var(--primary-purple); font-size: 1.8rem;">🎉 KẾT QUẢ BÀI THI 🎉</h2>
+      <div class="modal-score" id="scoreValue">0 / 13</div>
+      <div class="modal-badge" id="scoreBadge">THIÊN TÀI IELTS 9.0!</div>
+      <p id="scoreComment" style="color: #555; line-height: 1.5; font-weight: 700;">Em làm bài rất tuyệt vời!</p>
+      <button class="btn-submit-test" style="margin-top: 20px; font-size: 0.95rem; padding: 10px 25px;" onclick="closeModal()">ĐÓNG & XEM LẠI BÀI</button>
+    </div>
+  </div>
+
+  <script>
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playCorrectSound() {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.12);
+      osc.frequency.exponentialRampToValueAtTime(783.99, audioCtx.currentTime + 0.25);
+      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.35);
+    }
+
+    function playWrongSound() {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(130.81, audioCtx.currentTime + 0.25);
+      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.3);
+    }
+
+    let totalQuestions = 13;
+    let userAnswers = {};
+    let timerSeconds = 20 * 60;
+    let timerInterval = null;
+    let isTimerRunning = false;
+
+    function toggleTimer() {
+      const btn = document.getElementById('btnTimerControl');
+      if (!isTimerRunning) {
+        isTimerRunning = true;
+        btn.innerText = "TẠM DỪNG";
+        btn.style.background = "#ff9800";
+        timerInterval = setInterval(updateTimer, 1000);
+      } else {
+        isTimerRunning = false;
+        btn.innerText = "TIẾP TỤC";
+        btn.style.background = "#4caf50";
+        clearInterval(timerInterval);
+      }
+    }
+
+    function updateTimer() {
+      if (timerSeconds <= 0) {
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+        document.getElementById('timerDisplay').innerText = "00:00";
+        alert("⏰ Đã hết giờ làm bài, vui lòng nộp bài nhé!");
+        disableInputs();
+        submitTest();
+        return;
+      }
+      timerSeconds--;
+      let m = Math.floor(timerSeconds / 60);
+      let s = timerSeconds % 60;
+      document.getElementById('timerDisplay').innerText = 
+        `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
+    }
+
+    function disableInputs() {
+      document.querySelectorAll('input, select, button.mcq-btn').forEach(el => {
+        el.disabled = true;
+      });
+    }
+
+    function switchTab(tabIndex) {
+      document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+        btn.classList.toggle('active', idx + 1 === tabIndex);
+      });
+
+      document.querySelectorAll('.passage-content').forEach((p, idx) => {
+        p.style.display = (idx + 1 === tabIndex) ? 'block' : 'none';
+      });
+
+      document.querySelectorAll('.exercise-tab-content').forEach((ex, idx) => {
+        ex.style.display = (idx + 1 === tabIndex) ? 'block' : 'none';
+      });
+
+      document.getElementById('passagePane').scrollTop = 0;
+      document.getElementById('exercisePane').scrollTop = 0;
+    }
+
+    function toggleTranslation(id) {
+      const el = document.getElementById(id);
+      el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function updateProgress() {
+      let count = Object.keys(userAnswers).length;
+      let pct = (count / totalQuestions) * 100;
+      document.getElementById('progressBarFill').style.width = pct + '%';
+    }
+
+    function checkMCQ(qKey, chosenOptKey, correctOptKey) {
+      const container = document.getElementById(`opts-${qKey}`);
+      const btns = container.querySelectorAll('.mcq-btn');
+      const exp = document.getElementById(`exp-${qKey}`);
+
+      btns.forEach(btn => btn.disabled = true);
+      exp.style.display = 'block';
+
+      btns.forEach(btn => {
+        let optText = btn.innerText.trim();
+        let isChosen = optText.startsWith(chosenOptKey);
+        let isCorrect = optText.startsWith(correctOptKey);
+
+        if (isChosen) {
+          if (chosenOptKey === correctOptKey) {
+            btn.classList.add('correct');
+            playCorrectSound();
+            userAnswers[qKey] = true;
+            launchConfetti();
+          } else {
+            btn.classList.add('wrong');
+            playWrongSound();
+            userAnswers[qKey] = false;
+          }
+        }
+        if (isCorrect && chosenOptKey !== correctOptKey) {
+          btn.classList.add('correct');
+        }
+      });
+      updateProgress();
+    }
+
+    function locateEvidence(sentenceId) {
+      if (sentenceId.startsWith('p1')) switchTab(1);
+      else if (sentenceId.startsWith('p2')) switchTab(2);
+      else if (sentenceId.startsWith('p3')) switchTab(3);
+
+      document.querySelectorAll('.sentence').forEach(s => s.classList.remove('sentence-target'));
+      const target = document.getElementById(sentenceId);
+      if (target) {
+        target.classList.add('sentence-target');
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    document.addEventListener('mouseup', function() {
+      const selection = window.getSelection();
+      if (!selection.isCollapsed && selection.toString().trim().length > 0) {
+        const range = selection.getRangeAt(0);
+        const span = document.createElement('span');
+        span.className = 'custom-highlight';
+        try {
+          range.surroundContents(span);
+        } catch (e) {}
+      }
+    });
+
+    function shuffleOptionsOnLoad() {
+      document.querySelectorAll('.mcq-options').forEach(container => {
+        const buttons = Array.from(container.children);
+        for (let i = buttons.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [buttons[i], buttons[j]] = [buttons[j], buttons[i]];
+        }
+        buttons.forEach(btn => container.appendChild(btn));
+      });
+    }
+
+    function submitTest() {
+      let score = 0;
+      for (let k in userAnswers) {
+        if (userAnswers[k] === true) score++;
+      }
+
+      document.getElementById('scoreValue').innerText = `${score} / ${totalQuestions}`;
+      const badge = document.getElementById('scoreBadge');
+      const comment = document.getElementById('scoreComment');
+
+      let pct = (score / totalQuestions) * 100;
+      if (pct === 100) {
+        badge.innerText = "🏆 THIÊN TÀI IELTS 9.0!";
+        comment.innerText = "Xuất sắc tuyệt đối! Em đã làm đúng 100% toàn bộ bài thi!";
+      } else if (pct >= 70) {
+        badge.innerText = "🌟 LÀM TỐT LẮM!";
+        comment.innerText = "Kỹ năng đọc hiểu và tư duy từ vựng rất ấn tượng! Đọc lại giải thích để đạt điểm tuyệt đối nhé!";
+      } else if (pct >= 50) {
+        badge.innerText = "👍 KHÁ TỐT!";
+        comment.innerText = "Em đã làm tương đối tốt. Hãy đọc kỹ lại phần giải thích để cải thiện các câu sai!";
+      } else {
+        badge.innerText = "💪 CỐ LÊN NHÉ!";
+        comment.innerText = "Đừng nản lòng! Đọc kỹ các câu dịch và từ vựng mở rộng để sẵn sàng cho bài sau nhé!";
+      }
+
+      document.getElementById('scoreModal').style.display = 'flex';
+      launchConfetti();
+    }
+
+    function closeModal() {
+      document.getElementById('scoreModal').style.display = 'none';
+    }
+
+    function launchConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      let pieces = [];
+      const colors = ['#ff80ab', '#8854c0', '#00D26A', '#FDCB6E', '#00C9A7'];
+      
+      for (let i = 0; i < 70; i++) {
+        pieces.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          speed: Math.random() * 4 + 2,
+          rotation: Math.random() * 360,
+          rotSpeed: Math.random() * 6 - 3
+        });
+      }
+
+      let animationFrame;
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pieces.forEach(p => {
+          p.y += p.speed;
+          p.rotation += p.rotSpeed;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.restore();
+        });
+        pieces = pieces.filter(p => p.y < canvas.height);
+        if (pieces.length > 0) {
+          animationFrame = requestAnimationFrame(animate);
+        } else {
+          cancelAnimationFrame(animationFrame);
+        }
+      }
+      animate();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      shuffleOptionsOnLoad();
+    });
+  </script>
+</body>
+</html>
